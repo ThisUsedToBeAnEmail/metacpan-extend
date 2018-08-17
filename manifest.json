@@ -1,0 +1,28 @@
+{
+  "name": "MetaCPAN",
+  "version": "1.0",
+  "description": "MetaCPAN as an extension",
+  "permissions": ["activeTab", "declarativeContent", "storage", "https://fastapi.metacpan.org/" ],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/todo_16.png",
+      "32": "images/todo_32.png",
+      "128": "images/todo_128.png"
+    }
+  },
+  "icons": {
+    "16": "images/todo_16.png",
+    "32": "images/todo_32.png",
+    "128": "images/todo_128.png"
+  },
+  "web_accessible_resources": [
+     "images/metacpan-logo.png"
+  ],
+  "manifest_version": 2
+}

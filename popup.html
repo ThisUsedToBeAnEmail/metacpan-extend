@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<style>
+.tabs {
+        position: relative;
+        min-height: 200px; /* This part sucks */
+        clear: both;
+        margin: 0;
+        max-height: 100vh;
+        height: 100%;
+        z-index: 100
+}
+.tab {
+        float: left;
+}
+.tab label {
+    border: none;
+    position: relative;
+    display: block;
+    width: auto;
+    text-align: center;
+    z-index: 1000;
+    padding: 0.3em;
+}
+
+.tab [type=radio] {
+        display: none;
+}
+.content {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        background: white;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        font-size: 10px;
+        overflow: scroll;
+        box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
+}
+.content > * {
+        opacity: 0;
+
+        -webkit-transform: translate3d(0, 0, 0);
+
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform:   translateX(-100%);
+        -o-transform:           translateX(-100%);
+
+        -webkit-transition: all 0.6s ease;
+        -moz-transition:        all 0.6s ease;
+        -ms-transition:  all 0.6s ease;
+        -o-transition:          all 0.6s ease;
+}
+[type=radio]:checked ~ label {
+    background: #da1b35;
+    border-bottom: 1px solid white;
+    z-index: 2;
+    color: white;    
+}
+[type=radio]:checked ~ label ~ .content {
+        z-index: 1;
+}
+[type=radio]:checked ~ label ~ .content > * {
+        opacity: 1;
+
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -o-transform: translateX(0);
+}
+.logo-wrapper {
+	width: 125px;
+    height: 18px;
+    display: grid;
+    padding: 0 0 2px 0;
+	position: absolute;
+	right: 0;
+}
+.logo-wrapper a {
+	background-size: 112px 27px;
+    background-repeat: no-repeat;
+}
+[type=text] {
+	width: 395px;
+}
+	</style>
+	</head>
+	<body style="width:500px;">
+		<div class="logo-wrapper">
+			<a href="https://metacpan.org" id="logo" ></a>
+		</div>
+		<div class="tabs">
+			<div class="tab pure-u-2-5">
+				<input type="radio" id="r-tab-1" name="tab-group-2" checked="">
+				<label class="pure-menu-link main" for="r-tab-1">Search</label>
+
+				<div class="content">
+					<form id="searching">
+						<input type="text" name="q"></input>	
+						<input type="submit"></input>
+					</form>
+					<div id="results">
+						
+					</div>
+				</div>
+			</div>
+			<div class="tab pure-u-2-5">
+				<input type="radio" id="r-tab-2" name="tab-group-2" checked="">
+				<label class="pure-menu-link main" for="r-tab-2">Recent</label>
+
+				<div class="content">
+					<div id="recent">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="spinner"></div>
+		<script src="popup.js"></script>
+	</body>
+</html>
