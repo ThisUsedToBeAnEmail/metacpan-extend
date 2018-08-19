@@ -33,7 +33,7 @@ if (window.Notification) {
 					hi = hi._source;
 					if (recent.notification[hi.main_module + hi.version] === undefined) {
 						recent.notification[hi.main_module + hi.version] = hi;
-						if (1) {
+						if (shw) {
 							show(hi);
 						}
 					}
