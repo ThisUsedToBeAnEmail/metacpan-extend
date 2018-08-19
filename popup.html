@@ -2,90 +2,134 @@
 <html>
 	<head>
 	<style>
-.tabs {
-        position: relative;
-        min-height: 200px; /* This part sucks */
-        clear: both;
-        margin: 0;
-        max-height: 100vh;
-        height: 100%;
-        z-index: 100
-}
-.tab {
-        float: left;
-}
-.tab label {
-    border: none;
-    position: relative;
-    display: block;
-    width: auto;
-    text-align: center;
-    z-index: 1000;
-    padding: 0.3em;
-}
+		.result, .content {
+			border: 1px solid #eee;
+			padding: 0 10px;
+			box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
+		}
+		.result .info {
+			float: right;
+			font-size: 10px;
+		}
+		.tabs {
+			position: relative;
+			min-height: 200px; /* This part sucks */
+			clear: both;
+			margin: 0;
+			max-height: 100vh;
+			height: 100%;
+			z-index: 100
+		}
+		.tab {
+			float: left;
+		}
+		.tab label {
+			border: none;
+			position: relative;
+			display: block;
+			width: auto;
+			text-align: center;
+			z-index: 1000;
+			padding: 0.3em;
+		}
 
-.tab [type=radio] {
-        display: none;
-}
-.content {
-        position: absolute;
-        top: 28px;
-        left: 0;
-        background: white;
-        right: 0;
-        bottom: 0;
-        padding: 20px;
-        font-size: 10px;
-        overflow: scroll;
-        box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
-}
-.content > * {
-        opacity: 0;
+		.tab [type=radio] {
+			display: none;
+		}
+		.content {
+			position: absolute;
+			top: 28px;
+			left: 0;
+			background: white;
+			right: 0;
+			bottom: 0;
+			padding: 8px;
+			font-size: 10px;
+			overflow: scroll;
+			box-shadow: 0px 1px 15px 1px rgba(113, 106, 202, 0.08);
+		}
 
-        -webkit-transform: translate3d(0, 0, 0);
+		.content > * {
+			opacity: 0;
 
-        -webkit-transform: translateX(-100%);
-        -moz-transform: translateX(-100%);
-        -ms-transform:   translateX(-100%);
-        -o-transform:           translateX(-100%);
+			-webkit-transform: translate3d(0, 0, 0);
 
-        -webkit-transition: all 0.6s ease;
-        -moz-transition:        all 0.6s ease;
-        -ms-transition:  all 0.6s ease;
-        -o-transition:          all 0.6s ease;
-}
-[type=radio]:checked ~ label {
-    background: #da1b35;
-    border-bottom: 1px solid white;
-    z-index: 2;
-    color: white;    
-}
-[type=radio]:checked ~ label ~ .content {
-        z-index: 1;
-}
-[type=radio]:checked ~ label ~ .content > * {
-        opacity: 1;
+			-webkit-transform: translateX(-100%);
+			-moz-transform: translateX(-100%);
+			-ms-transform:   translateX(-100%);
+			-o-transform:		   translateX(-100%);
 
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        -o-transform: translateX(0);
-}
-.logo-wrapper {
-	width: 125px;
-    height: 18px;
-    display: grid;
-    padding: 0 0 2px 0;
-	position: absolute;
-	right: 0;
-}
-.logo-wrapper a {
-	background-size: 112px 27px;
-    background-repeat: no-repeat;
-}
-[type=text] {
-	width: 395px;
-}
+			-webkit-transition: all 0.6s ease;
+			-moz-transition:		all 0.6s ease;
+			-ms-transition:  all 0.6s ease;
+			-o-transition:		  all 0.6s ease;
+		}
+		[type=radio]:checked ~ label {
+			background: #da1b35;
+			border-bottom: 1px solid white;
+			z-index: 2;
+			color: white;	
+		}
+		[type=radio]:checked ~ label ~ .content {
+			z-index: 1;
+		}
+		[type=radio]:checked ~ label ~ .content > * {
+			opacity: 1;
+
+			-webkit-transform: translateX(0);
+			-moz-transform: translateX(0);
+			-ms-transform: translateX(0);
+			-o-transform: translateX(0);
+		}
+		.logo-wrapper {
+			width: 125px;
+			height: 18px;
+			display: grid;
+			padding: 0 0 2px 0;
+			position: absolute;
+			right: 0;
+		}
+		.logo-wrapper a {
+			background-size: 112px 27px;
+			background-repeat: no-repeat;
+		}
+		[type=text] {
+			max-width: 90%;
+			height: 10px;
+			padding: 6px 12px;
+			font-size: 13px;
+			line-height: 1.42857143;
+			border: 1px solid #cccccc;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+			transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			min-width: 387px;
+		}
+		[type=submit] {
+			background-color: #f5f5f5;
+			background-image: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%);
+			border-color: #cccccc #cccccc #b3b3b3;
+			box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+			color: #333333;
+			font-size: 14px;
+			line-height: 14px;
+			margin-bottom: 0;
+			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+			border-radius: 0;
+			padding: 4px 12px;
+			margin-left: -4px;
+			max-width: 7%;
+			min-width: 70px;
+		}
+		.spinner {
+			text-align: center;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			margin-top: -100px;
+			z-index: 1000;
+		}
+		.hide { display: none }
+		.spinner > div {width: 16.666666666666668px;height: 20px;background-color: #333;border-radius: 100%;display: inline-block;-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;animation: sk-bouncedelay 1.4s infinite ease-in-out both;background: #da1b35;}.spinner .bounce1 {-webkit-animation-delay: -0.32s;animation-delay: -0.32s;}.spinner .bounce2 {-webkit-animation-delay: -0.16s;animation-delay: -0.16s;}@-webkit-keyframes sk-bouncedelay {0%, 80%, 100% {-webkit-transform: scale(0);}40% {-webkit-transform: scale(1.0);}}@keyframes sk-bouncedelay {0%, 80%, 100% {-webkit-transform: scale(0);transform: scale(0);}40% {-webkit-transform: scale(1.0);transform: scale(1.0);}} /* generate via terseSpinner */
 	</style>
 	</head>
 	<body style="width:500px;">
@@ -100,7 +144,7 @@
 				<div class="content">
 					<form id="searching">
 						<input type="text" name="q"></input>	
-						<input type="submit"></input>
+						<input type="submit" value="Search"></input>
 					</form>
 					<div id="results">
 						
@@ -118,7 +162,8 @@
 				</div>
 			</div>
 		</div>
-		<div id="spinner"></div>
+		<div id="spinner" class="spinner hide"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>
+		<script src="terse.js"></script>
 		<script src="popup.js"></script>
 	</body>
 </html>
