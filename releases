@@ -1,0 +1,4 @@
+1.2 2018-08-20 23:33
+- On first install - recent request is on a timeout
+- store search request in localStorage
+- Recent only updates once **released**
