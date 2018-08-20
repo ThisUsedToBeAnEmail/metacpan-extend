@@ -15,15 +15,7 @@ function show(hit) {
 if (window.Notification) {
 	setInterval(function() {
 		let recent = localStorage.recent ? JSON.parse(localStorage.recent) : {};
-		_().ajax.post({
-			params: {
-				"query" : {
-					"match": { "status" : "latest" }
-				},
-				sort: { date: 'desc' },
-				size: 20
-			},
-			endpoint: 'release/_search',
+		_().model.recentUploads({
 			callback: function (res) {
 				recent.results = res.hits.hits;
 				var shw;

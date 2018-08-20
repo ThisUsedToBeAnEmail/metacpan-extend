@@ -5,7 +5,7 @@
 	"permissions": ["activeTab", "notifications", "declarativeContent", "storage", "https://fastapi.metacpan.org/" ],
 	"options_page": "options.html",
 	"background": {
-		"scripts": ["terse.js", "background.js"],
+		"scripts": ["terse.js", "model.js", "background.js"],
 		"persistent": false
 	},
 	"browser_action": {

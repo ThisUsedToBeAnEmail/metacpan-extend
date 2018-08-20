@@ -1,9 +1,9 @@
 (function () {
 	var imgURL = chrome.extension.getURL("images/metacpan-logo.png");
 	_("#logo").style({backgroundImage:'url(' + imgURL + ')'});
-	
+
 	var renderSearch = function (hits) {
-		html = '';			
+		html = '';
 		hits.forEach(function (hit) {
 			console.log(hit);
 			hit = hit._source;
@@ -16,7 +16,8 @@
 	}
 
 	var renderRecent = function (hits) {
-		html = '';			
+		var recent = _('#recent').element();
+		html = '';
 		hits.forEach(function (hit) {
 			console.log(hit);
 			hit = hit._source;
@@ -25,7 +26,7 @@
 			html += '<p>' + (hit.abstract) + '</p>';
 			html += '</div>';
 		});
-		return html;
+		recent.innerHTML = html;
 	}
 
 	window.addEventListener('click', function (event) {
@@ -38,8 +39,8 @@
 	window.addEventListener('submit', function (event) {
 		event.preventDefault();
 		var params = _().formData(event.target);
-		_().ajax.searchFile({ 
-			params: params, 
+		_().model.searchFile({
+			params: params,
 			callback: function (res) {
 				// i have all this in oo Terse but lets not expose this to the world today :)
 				// instead stringify
@@ -50,8 +51,16 @@
 		});
 	});
 
-	var data = JSON.parse(localStorage.recent);
-	var recent = _('#recent').element();
-	var html = renderRecent(data.results);
-	recent.innerHTML = html;
+	if (localStorage.recent) {
+		var data = JSON.parse(localStorage.recent);
+		renderRecent(data.results);
+	} else {
+		_().model.recentUploads({
+			callback: function (res) {
+				let results = res.hits.hits;
+				renderRecent(results);
+				localStorage.recent = JSON.stringify({results:results});
+			}
+		});
+	}
 })();

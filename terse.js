@@ -93,13 +93,24 @@
 
 	TerseAjax.prototype = {
 		get: function (options) {
-			this.callAjax('GET', options);
+			this.call('GET', options);
 			return this.agent;
 		},
 		post: function (options) {
 			console.log('post');
-			this.callAjax('POST', options);
+			this.call('POST', options);
 			return this.agent;
+		},
+		recentUploads: function (options) {
+			options.params = {
+				"query" : {
+					"match": { "status" : "latest" }
+				},
+				sort: { date: 'desc' },
+				size: 20
+			};
+			options.endpoint = 'release/_search';
+			this.call('POST', options);
 		},
 		searchFile: function (options) {
 			if (options.params.q.match('::')) { // a bit niave but for now:)
@@ -107,7 +118,7 @@
 				options.params = {
 					"q" : '(' + options.params.q + ')',
 				};
-				this.callAjax('GET', options);
+				this.call('GET', options);
 			} else {
 				options.endpoint = 'file/_search';
 				options.params = {
@@ -127,11 +138,11 @@
 						}
 					}
 				};
-				options.headers = { content_type: 'application/json' }; 
-				this.callAjax('POST', options);
-			}	
+				options.headers = { content_type: 'application/json' };
+				this.call('POST', options);
+			}
 		},
-		callAjax: function (method, options) {
+		call: function (method, options) {
 			var currentRequestTime = Math.floor(Date.now() / 1000);
 			console.log('options');
 			if (lastRequest.params !== undefined && this.terse.equals(lastRequest.params, options.params) === true) {
@@ -145,19 +156,19 @@
 			var xhttp = new XMLHttpRequest();
 			if (! options.params) options.params = {};
 			if (! options.errorTitle) options.errorTitle = 'unclassified error';
-			
+
 			// TODO handle browser offline
 
 			var call = this.terse.baseUrl + options.endpoint + '?';
 
 			if (method === 'GET') call += this.terse.encodedStr(options.params);
 
-			
+
 			var spinner = options.nospinner ? undefined : _('#spinner').element();
 			if (spinner) xhttp.upload.addEventListener('progress', function (evt) {
 				spinner.classList.remove('hide');
 			}, false);
-			
+
 			// TODO handle errors better :)
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
@@ -175,7 +186,7 @@
 							console.warn(e);
 							return;
 						}
-						
+
 						return options.callback( response, options );
 					} else {
 						console.warn('Ajax failed: ' + xhttp.status);
@@ -185,7 +196,7 @@
 
 			xhttp.open(method, call, true);
 			xhttp.timeout = options.timeout || 10000;
-			
+
 			if (! options.headers ) options.headers = { Access_Control_Allow_Credentials: true, support_credentials: true };
 			if (! options.headers.content_type ) options.headers.content_type = 'application/x-www-form-urlencoded';
 
@@ -199,7 +210,7 @@
 			xhttp.withCredentials = true;
 
 			xhttp.ontimeout = function () {
-				options.ontimeout 
+				options.ontimeout
 					? options.ontimeout(options)
 					: console.warn('Request Timed Out');
 			}
