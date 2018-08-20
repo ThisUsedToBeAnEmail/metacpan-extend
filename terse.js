@@ -97,7 +97,6 @@
 			return this.agent;
 		},
 		post: function (options) {
-			console.log('post');
 			this.call('POST', options);
 			return this.agent;
 		},
@@ -144,7 +143,6 @@
 		},
 		call: function (method, options) {
 			var currentRequestTime = Math.floor(Date.now() / 1000);
-			console.log('options');
 			if (lastRequest.params !== undefined && this.terse.equals(lastRequest.params, options.params) === true) {
 				var timeSince = currentRequestTime - lastRequest.time;
 				if (timeSince < 3) return true;
@@ -172,7 +170,6 @@
 			// TODO handle errors better :)
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
-					console.log(xhttp.response);
 					if (xhttp.status == 200) {
 						if (spinner) spinner.classList.add('hide');
 						var resposne;

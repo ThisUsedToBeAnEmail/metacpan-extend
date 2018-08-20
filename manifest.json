@@ -1,6 +1,6 @@
 {
 	"name": "meta::cpan::extend",
-	"version": "1.0",
+	"version": "1.2",
 	"description": "meta::cpan as an extension",
 	"permissions": ["activeTab", "notifications", "declarativeContent", "storage", "https://fastapi.metacpan.org/" ],
 	"options_page": "options.html",

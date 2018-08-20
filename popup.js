@@ -46,14 +46,12 @@
 			callback: function (res) {
 				// i have all this in oo Terse but lets not expose this to the world today :)
 				// instead stringify
-				renderSearch(res.hits !== undefined ? res.hits.hits : res.results.map(function (hit) { console.log(hit); return { _source: hit.hits[0] } }));
+				renderSearch(res.hits !== undefined ? res.hits.hits : res.results.map(function (hit) { return { _source: hit.hits[0] } }));
 			}
 		});
 	});
 
 	var chk = localStorage.activeTab ? localStorage.activeTab : 'recent-tab';
-	console.log(chk);
-	console.log(_('#' + chk).element());
 	_('#' + chk).element().checked = true;
 
 	if (localStorage.lastSearch) renderSearch(JSON.parse(localStorage.lastSearch));
