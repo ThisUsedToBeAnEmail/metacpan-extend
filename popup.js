@@ -21,7 +21,7 @@
 		html = '';
 		hits.forEach(function (hit) {
 			hit = hit._source;
-			html += '<div class="result">';
+			html += '<div class="result ' + (hit.status === 'latest' ? 'released' : 'upload')  + '">';
 			html += '<h2><a href="https://metacpan.org/pod/' + hit.main_module + '">' + hit.main_module + '</a><span class="info">v' + hit.version + ' (' + hit.author + ')</span></h2>';
 			html += '<p>' + (hit.abstract) + '</p>';
 			html += '</div>';

@@ -6,9 +6,6 @@
 	Model.prototype = {
 		recentUploads: function (options) {
 			options.params = {
-				"query" : {
-					"match": { "status" : "latest" }
-				},
 				sort: { date: 'desc' },
 				size: 20
 			};
