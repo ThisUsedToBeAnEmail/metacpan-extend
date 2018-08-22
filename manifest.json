@@ -6,7 +6,7 @@
 	"options_page": "options.html",
 	"background": {
 		"scripts": ["terse.js", "model.js", "background.js"],
-		"persistent": false
+		"persistent": true
 	},
 	"browser_action": {
 	"default_popup": "popup.html",
